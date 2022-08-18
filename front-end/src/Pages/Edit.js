@@ -1,4 +1,4 @@
-import EditSnack from '../Components/Edit/EditSnack';
+import EditSnack from "../Components/Edit/EditSnack";
 
 function Edit() {
   return (

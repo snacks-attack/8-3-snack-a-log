@@ -1,5 +1,6 @@
-import './Navbar.scss';
-import { Link } from 'react-router-dom';
+import "./Navbar.scss";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 export default function Navbar() {
   return (
@@ -10,9 +11,9 @@ export default function Navbar() {
       <h1>
         <Link to="/snacks">snacks</Link>
       </h1>
-      <button>
-        <Link to="/snacks/new">New snack</Link>
-      </button>
+      <Button variant="outline-primary">
+        <Link to="/snacks/new">New Snack</Link>
+      </Button>
     </nav>
   );
 }

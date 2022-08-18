@@ -1,4 +1,4 @@
-import NewSnack from '../Components/New/NewSnack';
+import NewSnack from "../Components/New/NewSnack";
 
 function New() {
   return (

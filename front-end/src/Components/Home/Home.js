@@ -1,4 +1,5 @@
-import './Home.scss';
+import "./Home.scss";
+
 function Home() {
   return (
     <div>

@@ -1,7 +1,7 @@
-import './Edit.scss';
+import "./Edit.scss";
 
 function EditSnack() {
-  return <></>;
+  return <section>edit</section>;
 }
 
 export default EditSnack;
