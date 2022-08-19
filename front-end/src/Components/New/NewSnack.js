@@ -1,20 +1,20 @@
-import './New.scss';
+import "./New.scss";
 
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { Form, Button } from 'react-bootstrap';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Form, Button } from "react-bootstrap";
 
 const API = process.env.REACT_APP_API_URL;
 
 function NewSnack() {
   const navigate = useNavigate();
   const [snack, setSnack] = useState({
-    name: '',
+    name: "",
     fiber: 0,
     protein: 0,
     added_sugar: 0,
-    image: '',
+    image: "",
   });
 
   const handleTextChange = (event) => {
@@ -28,13 +28,13 @@ function NewSnack() {
     e.preventDefault();
     axios
       .post(`${API}/snacks`, snack)
-      .then(() => navigate('/snacks'))
+      .then(() => navigate("/snacks"))
       .catch((err) => console.log(err));
   };
 
   return (
-    <div>
-      <h2>New Snacks</h2>
+    <section className="newSnackSection">
+      <h2>New Snack</h2>
       <Form onSubmit={handleSubmit} className="newForm">
         <Form.Group>
           <Form.Label htmlFor="name">Name</Form.Label>
@@ -91,7 +91,7 @@ function NewSnack() {
           Submit
         </Button>
       </Form>
-    </div>
+    </section>
   );
 }
 
