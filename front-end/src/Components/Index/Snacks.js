@@ -1,15 +1,14 @@
 import "./Index.scss";
-import { useState, useEffect } from "react";
+import axios from "axios";
+import HeartHealth from "../HeartHealth";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { useState, useEffect } from "react";
 // import { toast, ToastContainer } from "react-toastify";
-import axios from "axios";
-
-import HeartHealth from '../HeartHealth';
-
-const API = process.env.REACT_APP_API_URL;
 
 const Snacks = () => {
+  const API = process.env.REACT_APP_API_URL;
+
   const [snacks, setSnacks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [smallScreen, setSmallScreen] = useState(false);

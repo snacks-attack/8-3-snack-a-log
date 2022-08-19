@@ -1,9 +1,9 @@
-import './Show.scss';
-import { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import HeartHealth from '../HeartHealth';
-import { Button } from 'react-bootstrap';
+import "./Show.scss";
+import axios from "axios";
+import HeartHealth from "../HeartHealth";
+import { Button } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -22,7 +22,7 @@ const Snack = () => {
   const handleDelete = () => {
     axios
       .delete(`${API}/snacks/${id}`)
-      .then((res) => navigate('/snacks'))
+      .then((res) => navigate("/snacks"))
       .catch((err) => console.log(err));
   };
 
