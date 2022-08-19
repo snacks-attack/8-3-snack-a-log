@@ -1,9 +1,9 @@
-import "./Index.scss";
-import axios from "axios";
-import HeartHealth from "../HeartHealth";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import './Index.scss';
+import axios from 'axios';
+import HeartHealth from '../HeartHealth';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
 // import { toast, ToastContainer } from "react-toastify";
 
 const Snacks = () => {
@@ -43,9 +43,11 @@ const Snacks = () => {
                   </Link>
                   <div className="cardDetails">
                     {snack.name}
-                    <h4>
-                      <HeartHealth healthCheck={snack.is_healthy} />
-                    </h4>
+                    <span>
+                      <h4>
+                        <HeartHealth healthCheck={snack.is_healthy} />
+                      </h4>
+                    </span>
                   </div>
                   <Link to={`/snacks/${snack.id}/edit`}>
                     <Button variant="secondary">Edit</Button>
