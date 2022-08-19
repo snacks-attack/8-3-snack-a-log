@@ -1,6 +1,5 @@
 import "./Edit.scss";
 import axios from "axios";
-import HeartHealth from "../HeartHealth";
 import { Form, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,6 +10,7 @@ const EditSnack = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [error, setError] = useState("");
   const [snackName, setSnackName] = useState("");
   const [snackProtein, setSnackProtein] = useState(0);
   const [snackFiber, setSnackFiber] = useState(0);
@@ -28,7 +28,7 @@ const EditSnack = () => {
         setSnackImage(res.data.payload.image);
       })
       .catch((err) => {
-        console.log(err);
+        setError(err.message);
       });
   }, [id]); // eslint-disable-line
 
@@ -66,8 +66,6 @@ const EditSnack = () => {
       added_sugar: Number(snackSugar),
       image: snackImage,
     };
-
-    console.log(newSnackData);
 
     axios
       .put(`${API}/snacks/${id}`, newSnackData)
@@ -143,6 +141,8 @@ const EditSnack = () => {
           Update Snack
         </Button>
       </Form>
+
+      {error && <p>{error}</p>}
     </section>
   );
 };
