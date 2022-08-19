@@ -88,15 +88,5 @@
 }
 
 @media (max-width: 299px) {
-  .Snacks {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    background-color: rgb(255, 252, 242);
-
-    .Snack {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 10px;
-    }
-  }
+  // make it show a div that says "screen size is too small"
 }
