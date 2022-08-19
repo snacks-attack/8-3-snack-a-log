@@ -6,7 +6,7 @@ _You and your partner should include links or images of the following resources 
 
 - [Trello Board](https://trello.com/b/5TPYM7jV/snacks-attack)
 
-- [Deployed Front-end](https://snacks-attacks.netlify.app/)
+- [Deployed Front-end](https://snacks-attack.netlify.app/)
 - [Deployed Back-end](https://snack-a-log-server.herokuapp.com)
 
 ## Snack-a-log
