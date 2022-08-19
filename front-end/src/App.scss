@@ -1,0 +1,15 @@
+.mainSection {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  text-align: center;
+
+  .routeSections {
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .mainSidebar {
+    width: 90px;
+    margin: 0 auto;
+  }
+}

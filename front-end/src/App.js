@@ -1,19 +1,25 @@
-import './App.scss';
-import { Routes, Route } from 'react-router-dom';
+import "./App.scss";
+import { Routes, Route } from "react-router-dom";
 
-import Home from './Components/Home/Home';
-import Index from './Pages/Index';
-import Show from './Pages/Show';
-import New from './Pages/New';
-import FourOFour from './Pages/FourOFour';
-import Edit from './Pages/Edit';
-import Navbar from './Components/Navbar/Navbar';
+import Home from "./Components/Home/Home";
+import Index from "./Pages/Index";
+import Show from "./Pages/Show";
+import New from "./Pages/New";
+import FourOFour from "./Pages/FourOFour";
+import Edit from "./Pages/Edit";
+import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
   return (
-    <div className="App">
+    <section className="mainSection">
       <Navbar />
-      <main>
+      {/* <main> */}
+      <main className="mainSidebar">
+        <section>
+          <h1>sidebar</h1>
+        </section>
+      </main>
+      <section className="routeSections">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/snacks" element={<Index />} />
@@ -22,8 +28,9 @@ function App() {
           <Route path="/snacks/:id/edit" element={<Edit />} />
           <Route path="*" element={<FourOFour />} />
         </Routes>
-      </main>
-    </div>
+      </section>
+      {/* </main> */}
+    </section>
   );
 }
 

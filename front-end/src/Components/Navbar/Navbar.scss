@@ -1,0 +1,35 @@
+nav {
+  grid-column: 1 / span 3;
+  display: flex;
+  background-color: rgb(37, 36, 34);
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 3em;
+  margin-bottom: 1em;
+
+  h1 {
+    font-family: "Carter One", cursive;
+  }
+
+  a {
+    text-decoration: none;
+    color: rgb(235, 94, 40);
+  }
+
+  .snackImg {
+    width: 100px;
+  }
+
+  .navSnackLink {
+    font-size: 35px;
+  }
+
+  .navNewSnack {
+    font-size: 25px;
+  }
+
+  .newSnackButton {
+    height: 100%;
+    width: 100%;
+  }
+}

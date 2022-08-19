@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import "./index.scss";
+import "./fonts/Overlock_SC/OverlockSC-Regular.ttf";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.scss";
 
 ReactDOM.render(
   <React.StrictMode>
