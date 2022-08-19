@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 // import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 
-import HeartHealth from "../HeartHealth";
+import HeartHealth from '../HeartHealth';
 
 const API = process.env.REACT_APP_API_URL;
 
