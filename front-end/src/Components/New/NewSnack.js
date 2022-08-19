@@ -37,7 +37,7 @@ function NewSnack() {
       <h2>New Snacks</h2>
       <Form onSubmit={handleSubmit} className="newForm">
         <Form.Group>
-          <Form.Label htmlFor="name">Snack name</Form.Label>
+          <Form.Label htmlFor="name">Name</Form.Label>
           <Form.Control
             id="name"
             type="text"
@@ -47,7 +47,7 @@ function NewSnack() {
           ></Form.Control>
         </Form.Group>
         <Form.Group>
-          <Form.Label htmlFor="name">Fiber</Form.Label>
+          <Form.Label htmlFor="fiber">Fiber</Form.Label>
           <Form.Control
             id="fiber"
             type="number"
@@ -86,7 +86,7 @@ function NewSnack() {
             placeholder="https://image.com"
           ></Form.Control>
         </Form.Group>
-        <br/>
+        <br />
         <Button variant="primary" type="submit">
           Submit
         </Button>
