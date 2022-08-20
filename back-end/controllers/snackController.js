@@ -78,18 +78,21 @@ snack.put("/:id", checkValues, checkBoolean, async (req, res) => {
     name: req.body.name,
     fiber: req.body.fiber,
     protein: req.body.protein,
-    addedSugar: req.body.added_sugar,
-    isHealthy: req.body.is_healthy,
+    added_sugar: req.body.added_sugar,
+    is_healthy: req.body.is_healthy,
     image: req.body.image,
   };
+
+  updatedSnackData.name = capitalizeName(updatedSnackData.name);
+  updatedSnackData.is_healthy = confirmHealth(updatedSnackData);
 
   const updatedSnack = await updateSnack(
     id,
     updatedSnackData.name,
     updatedSnackData.fiber,
     updatedSnackData.protein,
-    updatedSnackData.addedSugar,
-    updatedSnackData.isHealthy,
+    updatedSnackData.added_sugar,
+    updatedSnackData.is_healthy,
     updatedSnackData.image
   );
 
