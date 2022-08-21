@@ -37,6 +37,8 @@ const Signin = ({ user, handleUser }) => {
     });
     if (foundUser) {
       handleUser(foundUser); //or user??
+    } else {
+      error = 'No user found!';
     }
   };
 
