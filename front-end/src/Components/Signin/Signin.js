@@ -11,7 +11,7 @@ const Signin = ({ user, handleUser }) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  //const [error, setError] = useState('');
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,21 +22,36 @@ const Signin = ({ user, handleUser }) => {
     }
   };
 
+  const checkUser = (userdata) => {
+    //userdata is res.data
+
+    const loggedInUser = {
+      password: password,
+      email: email,
+    };
+
+    const foundUser = userdata.find((user) => {
+      return (
+        user.email === loggedInUser.email && loggedInUser.password === password
+      );
+    });
+    if (foundUser) {
+      handleUser(foundUser); //or user??
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.get(`${API}/users`).then((res) => {
-      console.log(res.data);
-      checkIfUserExists(res.data);
-    });
-    const checkIfUserExists = (users) => {
-      const foundUser = users.find((user) => {
-        return user.email === email && user.password === password;
+
+    await axios
+      .get(`${API}/users`)
+      .then((res) => {
+        //console.log(res.data);
+        checkUser(res.data); // setUser to current users info, navigates to /authenticated/newuser.Id/snacks
+      })
+      .catch((error) => {
+        setError(error);
       });
-      if (foundUser) {
-        handleUser(user);
-        navigate('/authenticated/:userID/snacks')
-      }
-    };
   };
 
   return (
