@@ -2,12 +2,13 @@ import "./New.scss";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Form, Button } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 const API = process.env.REACT_APP_API_URL;
 
-function NewSnack() {
+const NewSnack = ({ user }) => {
   const navigate = useNavigate();
   const [snack, setSnack] = useState({
     name: "",
@@ -26,15 +27,43 @@ function NewSnack() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios
-      .post(`${API}/snacks`, snack)
-      .then(() => navigate("/snacks"))
-      .catch((err) => console.log(err));
+      .post(`${API}/authenticated/${user.id}/snacks`, snack)
+      .then(() => {
+        notify();
+      })
+      .catch((err) => {
+        toast.error(`ERROR: Snack unsuccessfully added \n ${err}`, {
+          position: "top-right",
+          pauseOnFocusLoss: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+        });
+      });
+  };
+
+  const notify = () => {
+    toast.success(
+      "Snack successfully added. \n You will be redirected in 3 seconds.",
+      {
+        position: "top-center",
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        pauseOnFocusLoss: false,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+    setTimeout(() => {
+      navigate(`/authenticated/${user.id}/snacks`);
+    }, 4100);
   };
 
   return (
     <section className="newSnackSection">
-      <h2>New Snacks</h2>
+      <h2>{user.username}'s New Snack</h2>
       <Form onSubmit={handleSubmit} className="newForm">
         <Form.Group>
           <Form.Label htmlFor="name">Name</Form.Label>
@@ -91,8 +120,10 @@ function NewSnack() {
           Submit
         </Button>
       </Form>
+
+      <ToastContainer autoClose={3000} theme="dark" />
     </section>
   );
-}
+};
 
 export default NewSnack;

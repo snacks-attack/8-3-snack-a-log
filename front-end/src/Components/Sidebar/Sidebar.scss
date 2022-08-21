@@ -1,0 +1,23 @@
+.sidebarNavbar {
+  border: 3px solid black;
+  width: 10em;
+  margin-right: 100px;
+
+  #sidebarMenuName {
+    font-size: 1.5em;
+    align-self: center;
+    margin: 0 auto;
+  }
+
+  #sidebarNavToggle {
+    color: orangered;
+  }
+
+  h4 {
+    color: aliceblue;
+  }
+
+  #sidebarUsername {
+    color: rgb(235, 94, 40);
+  }
+}

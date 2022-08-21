@@ -1,4 +1,4 @@
-import Snack from '../Components/Show/Snack';
+import Snack from "../Components/Show/Snack";
 
 function Show() {
   return (
