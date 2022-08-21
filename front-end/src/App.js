@@ -58,6 +58,10 @@ function App() {
             element={<Signup user={user} handleUser={handleUser} />}
           />
           <Route
+            path="/signin"
+            element={<Signin user={user} handleUser={handleUser} />}
+          />
+          <Route
             path="/authenticated/:userID/snacks"
             element={<AuthIndex user={user} />}
           />
