@@ -1,19 +1,36 @@
 import "./Sidebar.scss";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ user, isAuthenticated, handleLogout }) => {
   return (
     <section>
-      <Navbar expand="lg" className="sidebarNavbar">
+      <Navbar bg="dark" variant="dark" expand="lg" className="sidebarNavbar">
         <Navbar.Brand href="#menu" id="sidebarMenuName">
           Menu
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" id="sidebarNavToggle" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link to="/signin">Sign In</Link>
-            <Link to="/signup">Sign Up</Link>
+            {isAuthenticated ? (
+              <>
+                <h4>
+                  Signed in as: <p id="sidebarUsername">{user.username}</p>
+                </h4>
+                <Button
+                  variant="secondary"
+                  id="sidebarLogoutButton"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link to="/signin">Sign In</Link>
+                <Link to="/signup">Sign Up</Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -1,33 +1,41 @@
 import "./Index.scss";
 import axios from "axios";
-import HeartHealth from "../HeartHealth";
+import HeartHealth from "../../HeartHealth";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
-// import { toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
-const Snacks = () => {
+const Snacks = ({ user }) => {
   const API = process.env.REACT_APP_API_URL;
 
-  const [snacks, setSnacks] = useState([]);
+  const [userSnacks, setUserSnacks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [smallScreen, setSmallScreen] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    axios.get(`${API}/snacks`).then((res) => {
-      setSnacks(res.data.payload);
-      setLoading(false);
-    });
+    axios
+      .get(`${API}/authenticated/${user.id}/snacks`)
+      .then((res) => {
+        setUserSnacks(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
   }, []); // eslint-disable-line
 
   return (
     <section className="Snacks">
       {/* {smallScreen ? } */}
       <div className="Snack">
+        {error ? "No snacks found" : ""}
         {loading ? (
           <p>Loading...</p>
         ) : (
-          snacks.map((snack) => (
+          userSnacks.map((snack) => (
             <article key={snack.id} className="articleCard">
               <div className="cardContainer">
                 <h4>
