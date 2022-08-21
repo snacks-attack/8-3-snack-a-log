@@ -2,6 +2,7 @@ import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./Components/Home/Home";
+import Sidebar from "./Components/Sidebar/Sidebar";
 import Index from "./Pages/Index";
 import Show from "./Pages/Show";
 import New from "./Pages/New";
@@ -15,9 +16,7 @@ function App() {
       <Navbar />
       {/* <main> */}
       <main className="mainSidebar">
-        <section>
-          <h1>sidebar</h1>
-        </section>
+        <Sidebar />
       </main>
       <section className="routeSections">
         <Routes>

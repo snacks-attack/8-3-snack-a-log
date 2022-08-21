@@ -1,0 +1,17 @@
+.sidebarNavbar {
+  border: 3px solid black;
+  width: 10em;
+  margin-right: 100px;
+
+  #sidebarMenuName {
+    color: white;
+    font-size: 1.5em;
+    align-self: center;
+    margin: 0 auto;
+  }
+
+  #sidebarNavToggle {
+    color: orangered;
+    background-color: white;
+  }
+}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import SnackImg from "../../images/snacksAttack.png";
 
-export default function Navbar() {
+export default function NavBar() {
   return (
     <nav>
       <Link to="/">

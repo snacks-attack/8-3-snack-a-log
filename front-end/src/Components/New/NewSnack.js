@@ -34,7 +34,7 @@ function NewSnack() {
 
   return (
     <section className="newSnackSection">
-      <h2>New Snack</h2>
+      <h2>New Snacks</h2>
       <Form onSubmit={handleSubmit} className="newForm">
         <Form.Group>
           <Form.Label htmlFor="name">Name</Form.Label>
