@@ -1,33 +1,59 @@
-import "./Show.scss";
-import axios from "axios";
-import HeartHealth from "../../HeartHealth";
-import { Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import './Show.scss';
+import axios from 'axios';
+import HeartHealth from '../../HeartHealth';
+import { Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const API = process.env.REACT_APP_API_URL;
 
-const Snack = () => {
+const Snack = ({ user }) => {
   const [snack, setSnack] = useState({});
-  const { id } = useParams();
+  const [error, setError] = useState('');
+
   const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`${API}/snacks/${id}`)
-      .then((response) => setSnack(response.data.payload))
-      .catch((err) => console.log(err));
-  }, [id]);
+      .get(`${API}/authenticated/${user.id}/snacks/${id}`)
+      .then((response) => {
+        setSnack(response.data);
+      })
+      .catch((err) => setError(err));
+  }, [user.id, id]);
 
   const handleDelete = () => {
     axios
-      .delete(`${API}/snacks/${id}`)
-      .then((res) => navigate("/snacks"))
-      .catch((err) => console.log(err));
+      .delete(`${API}/authenticated/${user.id}/snacks/${id}`)
+      .then(() => {
+        notify();
+      })
+      .catch((err) => setError(err));
+  };
+
+  const notify = () => {
+    toast.success(
+      'Snack has been Deleted! \n You will be redirected in 3 seconds.',
+      {
+        position: 'top-center',
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        pauseOnFocusLoss: false,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+    setTimeout(() => {
+      navigate(`/authenticated/${user.id}/snacks`);
+    }, 4100);
   };
 
   return (
     <article className="showSnackDetails">
+      {error && <p className="error">{error}</p>}
       <aside className="snackHealth">
         <HeartHealth healthCheck={snack.is_healthy} />
       </aside>
@@ -41,10 +67,10 @@ const Snack = () => {
       </div>
 
       <div className="nav">
-        <Link to="/snacks">
+        <Link to={`/authenticated/${user.id}/snacks`}>
           <Button variant="primary">Back</Button>
         </Link>
-        <Link to={`/snacks/${id}/edit`}>
+        <Link to={`/authenticated/${user.id}/snacks/${id}/edit`}>
           <Button variant="warning">Edit</Button>
         </Link>
         <div>
@@ -53,6 +79,7 @@ const Snack = () => {
           </Button>
         </div>
       </div>
+      <ToastContainer autoClose={3000} theme="dark" />
     </article>
   );
 };

@@ -1,31 +1,31 @@
-import "./Edit.scss";
-import axios from "axios";
-import { Form, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import './Edit.scss';
+import axios from 'axios';
+import { Form, Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
-const EditSnack = () => {
+const EditSnack = ({ user }) => {
   const API = process.env.REACT_APP_API_URL;
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [error, setError] = useState("");
-  const [snackName, setSnackName] = useState("");
+  const [error, setError] = useState('');
+  const [snackName, setSnackName] = useState('');
   const [snackProtein, setSnackProtein] = useState(0);
   const [snackFiber, setSnackFiber] = useState(0);
   const [snackSugar, setSnackSugar] = useState(0);
-  const [snackImage, setSnackImage] = useState("");
+  const [snackImage, setSnackImage] = useState('');
 
   useEffect(() => {
     axios
-      .get(`${API}/snacks/${id}`)
+      .get(`${API}/authenticated/${user.id}/snacks/${id}`)
       .then((res) => {
-        setSnackName(res.data.payload.name);
-        setSnackProtein(res.data.payload.protein);
-        setSnackFiber(res.data.payload.fiber);
-        setSnackSugar(res.data.payload.added_sugar);
-        setSnackImage(res.data.payload.image);
+        setSnackName(res.data.name);
+        setSnackProtein(res.data.protein);
+        setSnackFiber(res.data.fiber);
+        setSnackSugar(res.data.added_sugar);
+        setSnackImage(res.data.image);
       })
       .catch((err) => {
         setError(err.message);
@@ -36,19 +36,19 @@ const EditSnack = () => {
     const { name, value } = e.target;
 
     switch (name) {
-      case "name":
+      case 'name':
         setSnackName(value);
         break;
-      case "protein":
+      case 'protein':
         setSnackProtein(value);
         break;
-      case "fiber":
+      case 'fiber':
         setSnackFiber(value);
         break;
-      case "sugar":
+      case 'sugar':
         setSnackSugar(value);
         break;
-      case "image":
+      case 'image':
         setSnackImage(value);
         break;
       default:
@@ -68,19 +68,43 @@ const EditSnack = () => {
     };
 
     axios
-      .put(`${API}/snacks/${id}`, newSnackData)
-      .then((res) => {
-        navigate("/snacks");
-        // toast.success("Snack updated successfully!");
+      .put(`${API}/authenticated/${user.id}/snacks/${id}`, newSnackData)
+      .then(() => {
+        notify();
       })
-      .catch((err) => {
-        // toast.error("Error updating snack!");
+      .catch(() => {
+        toast.error('Error updating snack!', {
+          position: 'top-right',
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          pauseOnFocusLoss: false,
+          draggable: true,
+          progress: undefined,
+        });
       });
+  };
+
+  const notify = () => {
+    toast.success(
+      'Snack has been Updated! \n You will be redirected in 3 seconds.',
+      {
+        position: 'top-center',
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        pauseOnFocusLoss: false,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+    setTimeout(() => {
+      navigate(`/authenticated/${user.id}/snacks`);
+    }, 4100);
   };
 
   return (
     <section className="editSnackSection">
-      {/* <ToastContainer /> */}
       <h1>Edit Snack</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="name">
@@ -141,8 +165,12 @@ const EditSnack = () => {
           Update Snack
         </Button>
       </Form>
+      <Link to={`/authenticated/${user.id}/snacks`}>
+        <Button variant="secondary">Cancel</Button>
+      </Link>
 
       {error && <p>{error}</p>}
+      <ToastContainer autoClose={3000} theme="dark" />
     </section>
   );
 };

@@ -1,25 +1,25 @@
-import "./Signup.scss";
-import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
+import './Signup.scss';
+import { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 
 const Signup = ({ handleUser }) => {
   const API = process.env.REACT_APP_API_URL;
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "username") {
+    if (name === 'username') {
       setUsername(value);
-    } else if (name === "password") {
+    } else if (name === 'password') {
       setPassword(value);
-    } else if (name === "email") {
+    } else if (name === 'email') {
       setEmail(value);
     }
   };
@@ -37,8 +37,8 @@ const Signup = ({ handleUser }) => {
       .then((res) => {
         const users = res.data.filter((user) => user.email === newUser.email);
         if (users.length > 0) {
-          toast.error("Email already exists!", {
-            position: "top-right",
+          toast.error('Email already exists!', {
+            position: 'top-right',
             pauseOnFocusLoss: false,
             closeOnClick: true,
             pauseOnHover: false,
@@ -61,9 +61,9 @@ const Signup = ({ handleUser }) => {
 
   const notify = (newUser) => {
     toast.success(
-      "User account has been created. You have automatially been signed in. \n You will be redirected in 3 seconds.",
+      'User account has been created. You have automatially been signed in. \n You will be redirected in 3 seconds.',
       {
-        position: "top-center",
+        position: 'top-center',
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: false,
