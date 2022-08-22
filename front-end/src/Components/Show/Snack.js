@@ -1,14 +1,15 @@
-import "./Show.scss";
-import axios from "axios";
-import HeartHealth from "../HeartHealth";
-import { Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import './Show.scss';
+import axios from 'axios';
+import HeartHealth from '../HeartHealth';
+import { Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 const API = process.env.REACT_APP_API_URL;
 
 const Snack = () => {
   const [snack, setSnack] = useState({});
+  const [error, setError] = useState('');
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -16,18 +17,19 @@ const Snack = () => {
     axios
       .get(`${API}/snacks/${id}`)
       .then((response) => setSnack(response.data.payload))
-      .catch((err) => console.log(err));
+      .catch((err) => setError(err));
   }, [id]);
 
   const handleDelete = () => {
     axios
       .delete(`${API}/snacks/${id}`)
-      .then((res) => navigate("/snacks"))
-      .catch((err) => console.log(err));
+      .then((res) => navigate('/snacks'))
+      .catch((err) => setError(err));
   };
 
   return (
     <article className="showSnackDetails">
+      {error && <p className="error">{error}</p>}
       <aside className="snackHealth">
         <HeartHealth healthCheck={snack.is_healthy} />
       </aside>

@@ -16,6 +16,7 @@ function NewSnack() {
     added_sugar: 0,
     image: "",
   });
+  const [error, setError] = useState("");
 
   const handleTextChange = (event) => {
     setSnack({
@@ -29,11 +30,12 @@ function NewSnack() {
     axios
       .post(`${API}/snacks`, snack)
       .then(() => navigate("/snacks"))
-      .catch((err) => console.log(err));
+      .catch((err) => setError(err));
   };
 
   return (
     <section className="newSnackSection">
+      {error && <p className="error">{error}</p>}
       <h2>New Snacks</h2>
       <Form onSubmit={handleSubmit} className="newForm">
         <Form.Group>

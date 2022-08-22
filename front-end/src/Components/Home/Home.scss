@@ -1,0 +1,13 @@
+.homepageLetter {
+    width: 50px;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(242, 210, 189);
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(123, 95, 95, 0.5);
+  padding: 20px;
+}
